@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Model;
-import Esper.Config;
+import Esper.configs;
 import Events.bloodreading;
 import model.Screen_Display;
 import java.util.Random;
@@ -114,7 +114,7 @@ public class sensor extends Thread{
             } catch (InterruptedException ex) {
                 Logger.getLogger(sensor.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Config.sendEvent(new bloodreading(currentreading));
+            configs.sendEvent(new bloodreading(currentreading));
             
         }
     
