@@ -21,6 +21,7 @@ public class sensor extends Thread{
     protected float oldreding;
     protected float currentreading;
     protected float lastreading;
+    private InsulinPumpSystem insulinpumpsystem;
 
     public sensor(float normalreading, float oldreding, float currentreading, float lastreading) {
         this.normalreading = normalreading;
@@ -29,6 +30,12 @@ public class sensor extends Thread{
         this.lastreading = lastreading;
     }
     
+
+    
+     public sensor(InsulinPumpSystem insulinpumpsystem) {
+       
+       this.insulinpumpsystem=insulinpumpsystem;
+    }
     
 
     public float getNormalreading() {

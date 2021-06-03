@@ -24,8 +24,15 @@ class InsulinDose extends Thread {
    
     private insulinresrvoir resrvoir;
     
+    private InsulinPumpSystem insulinpumpsystem;
+    
     public InsulinDose(){
     //empty constructor
+    }
+
+   public InsulinDose(InsulinPumpSystem insulinpumpsystem) {
+       
+       this.insulinpumpsystem=insulinpumpsystem;
     }
     
      public float getLastdose() {

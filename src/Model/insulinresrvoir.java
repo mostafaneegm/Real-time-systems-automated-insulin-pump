@@ -13,6 +13,16 @@ public class insulinresrvoir {
     private float amountofinsulin;
     private boolean insulinreplacement;
     private InsulinDose insulindose;
+    private InsulinPumpSystem insulinpumpsystem;
+    
+     public insulinresrvoir(InsulinPumpSystem insulinpumpsystem) {
+       
+       this.insulinpumpsystem=insulinpumpsystem;
+    }
+
+    public insulinresrvoir() {
+    }
+    
     
     public float checkamountofinsulin (float amountofinsulin)
     {

@@ -18,6 +18,14 @@ public class pump extends Thread{
     private InsulinDose dose;
     private Date timeOfLastPump;
 
+    
+    private InsulinPumpSystem insulinpumpsystem;
+    
+     public pump(InsulinPumpSystem insulinpumpsystem) {
+       
+       this.insulinpumpsystem=insulinpumpsystem;
+    }
+    
     pump(float currdose) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
