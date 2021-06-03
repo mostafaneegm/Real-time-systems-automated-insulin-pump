@@ -5,6 +5,12 @@
  */
 package Esper;
 
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author Lenovo
@@ -16,6 +22,24 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Logger.getRootLogger().setLevel(Level.OFF);
+        
+        configs.Eventsregisteration();
+        
+        final InsulinPumpSystem sys = new InsulinPumpSystem(null,null);
+        final self_test selft = new self_test();
+        
+        configs.createStatment("blood reading").setSubscriber(new Object(){
+        
+        public void update(int read)throws InterruptedException 
+        {
+            sys.get
+        }
+        
+        });
+                
+        
     }
     
 }
