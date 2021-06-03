@@ -8,7 +8,7 @@ package Model;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Esper.Config;
+import Esper.configs;
 
 /**
  *
@@ -17,6 +17,10 @@ import Esper.Config;
 public class pump extends Thread{
     private InsulinDose dose;
     private Date timeOfLastPump;
+
+    pump(float currdose) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
     
@@ -39,21 +43,26 @@ public class pump extends Thread{
   }
   
   }
+ 
+  
+  
+  
   
   
   @Override
   public void run(){
   
-  while(true){
-  try{
+     while(true){
+        try{
   
-  this.sleep(1000);
+        this.sleep(1000);
+        
   }catch(InterruptedException ex){
   
-  Logger.getLogger(pump.class.getName()).Log(Level.SEVEN, null, ex);
+    Logger.getLogger(pump.class.getName()).log(Level.SEVERE, null, ex);
   
   }
-  config.sendEvent(new pump(dose.getCurrdose()));
+    configs.sendEvent(new pump(dose.getCurrdose()));
   
   }
   

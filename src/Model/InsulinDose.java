@@ -7,7 +7,8 @@ package Model;
 import Model.sensor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Events.bloodReadin;
+import Events.bloodreading;
+import Esper.configs;
 /**
  *
  * @author Lenovo
@@ -15,13 +16,13 @@ import Events.bloodReadin;
 class InsulinDose extends Thread {
     private float lastdose;
     private float currdose;
-    private float cumulativeDoseinDay; 
-    protected float maxDoseinDay=400;
-    protected float minDoseinDay=130;
-    protected float safeZoneDose=180; 
+    private float cumulativeDoseinDay=5; 
+    protected float maxreading=400;
+    protected float minreading=130;
+    protected float safeZone=180; 
     private int numberofdose;
    
-    private insulinreservoir resrvoir;
+    private insulinresrvoir resrvoir;
     
     public InsulinDose(){
     //empty constructor
@@ -48,14 +49,14 @@ class InsulinDose extends Thread {
     // calculate the dose based on the sugar read 
     // hint the dose calcualtion is based on hypothieses 
     public float mesuredose(float dose, sensor sen){
-    if (sen.currentreading <=minDoseinDay){
+    if (sen.currentreading <=minreading){
         dose=0;
         
     }
-    else if(sen.currentreading>=maxDoseinDay)
+    else if(sen.currentreading>=maxreading)
     {  dose=50;
     }
-    else if(sen.currentreading>= safeZoneDose && sen.currentreading<= maxDoseinDay)
+    else if(sen.currentreading>= safeZone && sen.currentreading<= maxreading)
     {
         dose=40;
     }
@@ -64,10 +65,11 @@ class InsulinDose extends Thread {
     //check how much remaining dose in the pump 
     public boolean doseAvailability (float availableDose){
     pump p = new pump(currdose);
-    availableDose=resrvoir.getinsulinamount();
+    availableDose=resrvoir.getAmountofinsulin();
     
     if (currdose<availableDose){
-        p.pump(this);
+        p.pump(this,true);
+       
         return true;
     }
     else
@@ -81,17 +83,13 @@ class InsulinDose extends Thread {
 }
  // caclualte amount of insulin in the reservoir
  public float checkAmountOfInsulinInResrvoir(){
-    float insulinAmount= resrvoir.getinsulinamount();
+    float insulinAmount= resrvoir.getAmountofinsulin();
     System.out.println("amount of insulin is"+ insulinAmount);
     return insulinAmount;
  }
 
    
-public void caclulateCumulativDose(){
-if(numberofdose>=5){
-}
 
-}
 
 @Override
 public void run(){
@@ -102,10 +100,10 @@ public void run(){
             this.sleep(1000);
         
         } catch (InterruptedException ex){
-        Logger.getLogger(bloodReadin.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(bloodreading.class.getName()).log(Level.SEVERE, null, ex);
         
         }
-        Config.sendEvent(new pump(currdose));
+        configs.sendEvent(new pump(currdose));
 }
 
 
