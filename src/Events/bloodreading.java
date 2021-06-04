@@ -13,9 +13,9 @@ public class bloodreading {
     
     private float read;
     
-   public  bloodreading(float currentreading)
+   public  bloodreading(float read)
     {
-        this.read=currentreading;
+        this.read=read;
     
     }
 

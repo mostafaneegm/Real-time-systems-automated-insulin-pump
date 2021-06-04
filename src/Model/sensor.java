@@ -70,10 +70,14 @@ public class sensor extends Thread{
         this.lastreading = lastreading;
     }
      
+ 
+    
     public float measuresugarreading()
-    {
-        Random r = new Random();
-        return 40+r.nextFloat()*(150-40);
+    {   
+        //currentreading +=random(80,400);
+    Random r = new Random();
+    currentreading=40+r.nextFloat()*(150-40);
+    return currentreading;
     }
     
     public String comparereadings(float oldreading, float lastreading,float currentreading)
@@ -113,12 +117,12 @@ public class sensor extends Thread{
     public void run()
     {
         while(true)
-        {
-            if(insulinpumpsystem.isSystemOn()){
-            
-            //measuresugarreading();
-            insulinpumpsystem.getSen().getCurrentreading();
-            }
+     {
+//            if(insulinpumpsystem.isSystemOn()){
+//            
+//            //measuresugarreading();
+//            insulinpumpsystem.getSen().getCurrentreading();
+//            }
             try {
                 this.sleep(1000);
                 

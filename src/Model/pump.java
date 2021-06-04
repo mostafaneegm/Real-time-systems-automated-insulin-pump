@@ -61,7 +61,12 @@ public class pump extends Thread{
   public void run(){
   
      while(true){
-        try{
+    
+         if(insulinpumpsystem.isSystemOn()){
+         insulinpumpsystem.getSen().getCurrentreading();
+         }
+         
+         try{
   
         this.sleep(1000);
         
@@ -70,7 +75,7 @@ public class pump extends Thread{
     Logger.getLogger(pump.class.getName()).log(Level.SEVERE, null, ex);
   
   }
-    configs.sendEvent(new pump(dose.getCurrdose()));
+  //  configs.sendEvent(new pump(dose.getCurrdose()));
   
   }
   
