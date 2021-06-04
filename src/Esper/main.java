@@ -6,6 +6,7 @@
 package Esper;
 
 
+import Model.InsulinPumpSystem;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -27,19 +28,26 @@ public class main {
         
         configs.Eventsregisteration();
         
-        final InsulinPumpSystem sys = new InsulinPumpSystem(null,null);
-        final self_test selft = new self_test();
+        final InsulinPumpSystem sys = new InsulinPumpSystem();
         
-        configs.createStatment("blood reading").setSubscriber(new Object(){
+
+        // final self_test selft = new self_test();
         
-        public void update(int read)throws InterruptedException 
+        configs.createStatment("select read from bloodreading").setSubscriber(new Object(){
+        public void update(float read)throws InterruptedException 
         {
-            sys.get
+            sys.getSen();
         }
         
         });
                 
-        
+        configs.createStatment("select state from pumpstate")
+        .setSubscriber(new Object(){
+        public void update(boolean state) throws InterruptedException{
+        sys.isSystemOn();
+        }
+    
+    });
     }
     
 }

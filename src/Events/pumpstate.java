@@ -10,15 +10,15 @@ package Events;
  * @author hp
  */
 public class pumpstate {
-    private boolean pumpstate;
+    private boolean state;
 
    
 
-    public pumpstate(boolean pumpstate) {
-        this.pumpstate = pumpstate;
+    public pumpstate(boolean state) {
+        this.state = state;
     }
 
     public boolean isState() {
-        return pumpstate;
+        return state;
     }
 }

@@ -33,7 +33,7 @@ public class sensor extends Thread{
 
     
      public sensor(InsulinPumpSystem insulinpumpsystem) {
-       
+       this.currentreading=80;
        this.insulinpumpsystem=insulinpumpsystem;
     }
     
@@ -114,7 +114,11 @@ public class sensor extends Thread{
     {
         while(true)
         {
-            measuresugarreading();
+            if(insulinpumpsystem.isSystemOn()){
+            
+            //measuresugarreading();
+            insulinpumpsystem.getSen().getCurrentreading();
+            }
             try {
                 this.sleep(1000);
                 
@@ -126,5 +130,12 @@ public class sensor extends Thread{
         }
     
     }
+    
+    
+    
+
+    
+    
+    
     
     }

@@ -13,9 +13,9 @@ public class bloodreading {
     
     private float read;
     
-    public bloodreading(float currentreading)
+   public  bloodreading(float currentreading)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.read=currentreading;
     
     }
 

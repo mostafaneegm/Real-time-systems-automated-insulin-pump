@@ -34,6 +34,14 @@ public class InsulinPumpSystem {
     private sensor sen;
     private pumpwarning warn;
     private PumpState s;
+
+    public InsulinPumpSystem(InsulinDose dose, sensor sen) {
+        this.dose = dose;
+        this.sen = sen;
+    }
+    
+   
+    
     
     public InsulinPumpSystem (){
         gui = new GUI();
@@ -51,11 +59,11 @@ public class InsulinPumpSystem {
     public boolean isSystemOn(){
     return pumppstate;
     }
-    public void SugarMeasure(int sugar) throws InterruptedException{
-    System.out.println("the sugar measure is "+ " "+sugar);
-    gui.ReadingTxt().setText(sugar+" ");
+    public void SugarMeasure(float read) throws InterruptedException{
+    System.out.println("the sugar measure is "+ " "+read);
+    gui.ReadingTxt().setText(read+" ");
     
-    if(sugar >=400){
+    if(read >=400){
     warn.needtopump();
     configs.sendEvent(new pumpstate(false) );
     }
@@ -85,6 +93,11 @@ public class InsulinPumpSystem {
     gui.getoffBtn().setEnabled(pumpState);
    
     
+    }
+    public void alarm(){
+    if(sen.currentreading< dose.checkAmountOfInsulinInResrvoir()){
+    System.out.println("IMPORTANT!!! please refill the Resrvoir ");
+    }
     }
     
 }
