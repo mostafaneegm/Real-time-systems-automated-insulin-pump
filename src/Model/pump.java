@@ -26,8 +26,14 @@ public class pump extends Thread{
        this.insulinpumpsystem=insulinpumpsystem;
     }
     
-    pump(float currdose) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    public pump(float currdose) {
+//       return currdose;
+//    }
+
+    
+
+     pump() {
+       
     }
 
 
@@ -56,29 +62,22 @@ public class pump extends Thread{
   
   
   
-  
-  @Override
-  public void run(){
-  
-     while(true){
+   
+    @Override
+    public void run() {
+        while (true) {
+            if (insulinpumpsystem.isSystemOn()) {
+                insulinpumpsystem.getSen().measuresugarreading();
+            } else {
+                    System.out.println("the system is off!!");
+            }
+            try {
+                this.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(pump.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     
-         if(insulinpumpsystem.isSystemOn()){
-         insulinpumpsystem.getSen().getCurrentreading();
-         }
-         
-         try{
-  
-        this.sleep(1000);
-        
-  }catch(InterruptedException ex){
-  
-    Logger.getLogger(pump.class.getName()).log(Level.SEVERE, null, ex);
-  
-  }
-  //  configs.sendEvent(new pump(dose.getCurrdose()));
-  
-  }
-  
   }  
   
 

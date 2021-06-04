@@ -9,7 +9,9 @@ import com.espertech.esper.client.EPServiceProvider;
 import com.espertech.esper.client.EPServiceProviderManager;
 import Events.*;
 import com.espertech.esper.client.EPStatement;
+import Events.reservoir;
 import Events.pumpstate;
+import Events.bloodreading;
 
 /**
  *
@@ -26,9 +28,9 @@ public class configs {
         engine.getEPAdministrator().getConfiguration().addEventType(bloodreading.class);
         engine.getEPAdministrator().getConfiguration().addEventType(reservoir.class);
         engine.getEPAdministrator().getConfiguration().addEventType(pumpstate.class);
+     engine.getEPAdministrator().getConfiguration().addEventType(pumps.class);
 //        engine.getEPAdministrator().getConfiguration().addEventType(.class);
-//        engine.getEPAdministrator().getConfiguration().addEventType();
-//        
+       
         System.out.println("Events been registered succesfully");
     
     }

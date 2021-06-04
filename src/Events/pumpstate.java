@@ -18,7 +18,7 @@ public class pumpstate {
         this.state = state;
     }
 
-    public boolean isState() {
+    public boolean getState() {
         return state;
     }
 }

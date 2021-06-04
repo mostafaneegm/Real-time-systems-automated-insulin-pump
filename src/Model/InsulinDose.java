@@ -8,6 +8,7 @@ import Model.sensor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Events.bloodreading;
+import Events.pumps;
 import Esper.configs;
 /**
  *
@@ -55,24 +56,25 @@ class InsulinDose extends Thread {
     
     // calculate the dose based on the sugar read 
     // hint the dose calcualtion is based on hypothieses 
-    public float mesuredose(float dose, sensor sen){
+    public float mesuredose(sensor sen){
     if (sen.currentreading <=minreading){
-        dose=0;
+        
+        currdose=0;
         
     }
     else if(sen.currentreading>=maxreading)
-    {  dose=50;
+    {  currdose=50;
     }
     else if(sen.currentreading>= safeZone && sen.currentreading<= maxreading)
     {
-        dose=40;
+        currdose=40;
     }
-        return dose;
+        return currdose;
 }
     //check how much remaining dose in the pump 
     public boolean doseAvailability (float availableDose){
-    pump p = new pump(currdose);
-    availableDose=resrvoir.getAmountofinsulin();
+    pump p = new pump(); //pump the current dose
+    availableDose=resrvoir.getAmountofinsulin(); //get the available amount of insulin in resrvoir
     
     if (currdose<availableDose){
         p.pump(this,true);
@@ -110,7 +112,7 @@ public void run(){
         Logger.getLogger(bloodreading.class.getName()).log(Level.SEVERE, null, ex);
         
         }
-        configs.sendEvent(new pump(currdose));
+        configs.sendEvent(new pumps(currdose));
 }
 
 

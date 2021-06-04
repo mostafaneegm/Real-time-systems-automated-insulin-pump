@@ -33,21 +33,38 @@ public class main {
 
         // final self_test selft = new self_test();
         
-        configs.createStatment("select read from bloodreading").setSubscriber(new Object(){
-        public void update(float read)throws InterruptedException 
-        {
-            sys.getSen();
-        }
-        
-        });
-                
         configs.createStatment("select state from pumpstate")
         .setSubscriber(new Object(){
         public void update(boolean state) throws InterruptedException{
-        sys.isSystemOn();
+        sys.setState(state);
         }
     
     });
-    }
+        
+        
+        configs.createStatment("select currentreading from bloodreading").setSubscriber(new Object(){
+        public void update(float currentreading)throws InterruptedException 
+        {
+            sys.SugarMeasure(currentreading);
+        }
+        
+        });
+               
+       
+        configs.createStatment("select amountofinsulin in reservoir").setSubscriber(new Object(){
+        public void update(float amountofinsulin)throws InterruptedException 
+        {
+           sys.amountOfInsulininResourvoir(amountofinsulin);
+        }
+        
+        });
+     
+        configs.createStatment("select currdose in pumps").setSubscriber(new Object(){
+        public void update()throws InterruptedException 
+        {
+           sys.mesuredoseamount();
+        }
+        
+        });
     
-}
+}}

@@ -4,12 +4,17 @@
  * and open the template in the editor.
  */
 package Model;
+import Esper.configs;
+import Events.reservoir;
+//import Events.pumps;
 import Model.InsulinDose; 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author mostafa
  */
-public class insulinresrvoir {
+public class insulinresrvoir extends Thread{
     private float amountofinsulin;
     private boolean insulinreplacement;
     private InsulinDose insulindose;
@@ -62,5 +67,21 @@ public class insulinresrvoir {
         this.insulindose = insulindose;
     }
     
-    
+    @Override
+public void run(){
+    while(true){
+
+        try{
+        
+            this.sleep(1000);
+        
+        } catch (InterruptedException ex){
+        Logger.getLogger(reservoir.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }
+        configs.sendEvent(new reservoir(amountofinsulin));
+}
+
+
+}
 }

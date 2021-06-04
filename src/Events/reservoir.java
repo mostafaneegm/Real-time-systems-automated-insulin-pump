@@ -10,14 +10,15 @@ package Events;
  * @author hp
  */
 public class reservoir {
-    private int quantity;
+    private float amountofinsulin;
 
-    public int getQuantity() {
-        return quantity;
+  
+    public float getQuantity() {
+        return amountofinsulin;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public reservoir(float amountofinsulin) {
+        this.amountofinsulin = amountofinsulin;
     }
     
     

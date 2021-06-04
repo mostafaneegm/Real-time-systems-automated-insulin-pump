@@ -9,7 +9,7 @@ import Esper.configs;
 //import Events.pump;
 import Events.pumpstate;
 //import Events.reservoir;
-//import Events.glucosesensor;
+
 import View.GUI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +26,7 @@ public class InsulinPumpSystem {
     private GUI gui;
     
     
-    private boolean pumppstate= false;
+    private boolean state= false;
     
     private InsulinDose dose;
     private insulinresrvoir reservoir;
@@ -39,12 +39,16 @@ public class InsulinPumpSystem {
         this.dose = dose;
         this.sen = sen;
     }
+
+    public PumpState getS() {
+        return s;
+    }
     
    
     
     
     public InsulinPumpSystem (){
-        gui = new GUI();
+       gui = new GUI();
         gui.setLocationRelativeTo(null);
         gui.setVisible(true);
         
@@ -52,31 +56,42 @@ public class InsulinPumpSystem {
         reservoir= new insulinresrvoir (this);
         p = new pump (this);
         sen = new sensor (this);
+        s= new PumpState(this);
         warn =new pumpwarning();
         sen.start();
+        p.start();
+        
     }
     
     public boolean isSystemOn(){
-    return pumppstate;
+    return state;
     }
-    public void SugarMeasure(float read) throws InterruptedException{
-    System.out.println("the sugar measure is "+ " "+read);
-    gui.ReadingTxt().setText(read+" ");
+    public void SugarMeasure(float currentreading) throws InterruptedException{
+    System.out.println("the sugar measure is "+ " "+currentreading);
+    gui.getReadingTxt().setText(currentreading+" ");
     
-    if(read >=400){
+    if(currentreading >=400){
     warn.needtopump();
     configs.sendEvent(new pumpstate(false) );
     }
     
     }
+    public void amountOfInsulininResourvoir(float amountofinsulin){
+    reservoir.checkamountofinsulin(amountofinsulin);
     
+    }
+    public void mesuredoseamount()
+    {
+    dose.mesuredose(sen);
+    
+    }    
 
     public GUI getGui() {
         return gui;
     }
 
     public boolean isPumppstate() {
-        return pumppstate;
+        return state;
     }
 
     public pump getP() {
@@ -86,13 +101,24 @@ public class InsulinPumpSystem {
     public sensor getSen() {
         return sen;
     }
-    public void setState(boolean pumpState){
-    this.pumppstate=pumpState;
-    this.s.setState(pumpState);
-    gui.getonBtn().setEnabled(!pumpState);
-    gui.getoffBtn().setEnabled(pumpState);
-   
+
+    public InsulinDose getDose() {
+        return dose;
+    }
+
+    public insulinresrvoir getReservoir() {
+        return reservoir;
+    }
+
+    public pumpwarning getWarn() {
+        return warn;
+    }
     
+     public void setState(boolean state) {
+        this.state = state;
+       this.s.setState(state);
+        gui.getonBtn().setEnabled(!state);
+        gui.getoffBtn().setEnabled(state);
     }
     public void alarm(){
     if(sen.currentreading< dose.checkAmountOfInsulinInResrvoir()){

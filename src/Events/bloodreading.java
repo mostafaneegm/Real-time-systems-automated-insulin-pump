@@ -7,20 +7,20 @@ package Events;
 
 /**
  *
- * @author hp
+ * @author Lenovo
  */
 public class bloodreading {
     
-    private float read;
+    private final float currentreading;
     
-   public  bloodreading(float read)
+   public  bloodreading(float currentreading)
     {
-        this.read=read;
+        this.currentreading=currentreading;
     
     }
 
     public float getRead() {
-        return read;
+        return currentreading;
     }
     
     

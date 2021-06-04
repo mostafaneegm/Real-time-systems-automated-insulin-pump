@@ -134,14 +134,16 @@ public class GUI extends javax.swing.JFrame {
    configs.sendEvent(new pumpstate(false));        // TODO add your handling code here:
     }//GEN-LAST:event_getoffBtnActionPerformed
 
-    public JTextField ReadingTxt()
+    public JTextField getReadingTxt()
     {
         return ReadingTxt;
     }
-    public JTextField StatusTxt()
+    public JTextField getStatusTxt()
     {
         return StatusTxt;
     }
+    
+   
     public JButton getoffBtn()
     {
         return getoffBtn;

@@ -9,16 +9,17 @@ package Events;
  *
  * @author hp
  */
-public class glucosesensor {
-    private int glucose;
+public class pumps {
+    private float currdose;
 
-    public int getGlucose() {
-        return glucose;
+    public pumps(float currdose) {
+        this.currdose = currdose;
     }
 
-    public void setGlucose(int glucose) {
-        this.glucose = glucose;
+    public float getQuantity() {
+        return currdose;
     }
-    
+
+  
     
 }

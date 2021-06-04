@@ -23,12 +23,12 @@ public class sensor extends Thread{
     protected float lastreading;
     private InsulinPumpSystem insulinpumpsystem;
 
-    public sensor(float normalreading, float oldreding, float currentreading, float lastreading) {
-        this.normalreading = normalreading;
-        this.oldreding = oldreding;
-        this.currentreading = currentreading;
-        this.lastreading = lastreading;
-    }
+//    public sensor(float normalreading, float oldreding, float currentreading, float lastreading) {
+//        this.normalreading = normalreading;
+//        this.oldreding = oldreding;
+//        this.currentreading = currentreading;
+//        this.lastreading = lastreading;
+//    }
     
 
     
@@ -70,13 +70,21 @@ public class sensor extends Thread{
         this.lastreading = lastreading;
     }
      
- 
+  private float random(float min, float max) {
+        
+        if (min >= max) {
+            throw new IllegalArgumentException("max must be greater than min");
+        }
+        
+        Random r = new Random();
+        return r.nextInt((int) ((max - min) + 1)) + min;
+    }
     
     public float measuresugarreading()
     {   
-        //currentreading +=random(80,400);
-    Random r = new Random();
-    currentreading=40+r.nextFloat()*(150-40);
+       currentreading +=random(80,400);
+//    Random r = new Random();
+//    currentreading=40+r.nextFloat()*(150-40);
     return currentreading;
     }
     
@@ -110,29 +118,25 @@ public class sensor extends Thread{
     
     public void Displaycurrentreading(float currentreading)
     {
+       
         System.out.println("The current reading is"+"  "+ currentreading);
     }
     
+    
+    
+    
     @Override
-    public void run()
-    {
-        while(true)
-     {
-//            if(insulinpumpsystem.isSystemOn()){
-//            
-//            //measuresugarreading();
-//            insulinpumpsystem.getSen().getCurrentreading();
-//            }
+    public void run() {
+        while (true) {
+            
             try {
                 this.sleep(1000);
-                
             } catch (InterruptedException ex) {
                 Logger.getLogger(sensor.class.getName()).log(Level.SEVERE, null, ex);
             }
-            configs.sendEvent(new bloodreading(currentreading));
             
+            configs.sendEvent(new bloodreading(currentreading));
         }
-    
     }
     
     

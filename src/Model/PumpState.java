@@ -10,24 +10,24 @@ package Model;
  * @author Lenovo
  */
 public class PumpState {
-    private boolean pumpstate;
+    private boolean state;
     private InsulinPumpSystem insulinpumpsystem;
     
     
     public PumpState(InsulinPumpSystem insulinpumpsystem){
-    this.pumpstate=pumpstate;
+    this.state=false;
     this.insulinpumpsystem=insulinpumpsystem;
     
     }
-  public void setState(boolean pumpstate) {
-        this.pumpstate = pumpstate;
-        if (pumpstate) {
-            insulinpumpsystem.getGui().StatusTxt().setText("ON");
+  public void setState(boolean state) {
+        this.state = state;
+        if (state) {
+            insulinpumpsystem.getGui().getStatusTxt().setText("ON");
         } else {
-            insulinpumpsystem.getGui().StatusTxt().setText("OFF");
+            insulinpumpsystem.getGui().getStatusTxt().setText("OFF");
         }
 
-    }
+    }   
 
 
 }
