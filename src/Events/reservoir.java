@@ -7,7 +7,7 @@ package Events;
 
 /**
  *
- * @author hp
+ * @author mostafa
  */
 public class reservoir {
     private float amountofinsulin;

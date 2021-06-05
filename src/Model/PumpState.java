@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author Lenovo
+ * @author mostafa
  */
 public class PumpState {
     private boolean state;

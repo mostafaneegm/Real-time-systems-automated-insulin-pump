@@ -7,7 +7,7 @@ package Events;
 
 /**
  *
- * @author hp
+ * @author mostafa
  */
 public class pumps {
     private float currdose;

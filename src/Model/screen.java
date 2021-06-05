@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class screen {
 	String diabeticName;
 	boolean power;
-	self_test test;
+	SelfTest test;
 	buffer_msgs msg;
 	clock time;
 
