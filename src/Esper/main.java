@@ -7,6 +7,7 @@ package Esper;
 
 
 import Model.InsulinPumpSystem;
+import Model.SelfTest;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -31,8 +32,8 @@ public class main {
         final InsulinPumpSystem sys = new InsulinPumpSystem();
         
 
-        // final self_test selft = new self_test();
-        
+         final SelfTest selfTest = new SelfTest();
+
         configs.createStatment("select state from pumpstate")
         .setSubscriber(new Object(){
         public void update(boolean state) throws InterruptedException{
