@@ -109,7 +109,7 @@ public void run(){
             this.sleep(1000);
         
         } catch (InterruptedException ex){
-        Logger.getLogger(bloodreading.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(InsulinDose.class.getName()).log(Level.SEVERE, null, ex);
         
         }
         configs.sendEvent(new pumps(currdose));

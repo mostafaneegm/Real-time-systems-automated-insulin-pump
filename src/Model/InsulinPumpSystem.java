@@ -17,7 +17,6 @@ import Model.InsulinDose;
 import Model.insulinresrvoir;
 import Model.pump;
 import Model.sensor;
-import Model.screen;
 /**
  *
  * @author Lenovo

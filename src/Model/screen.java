@@ -5,14 +5,44 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Lenovo
  */
 public class screen {
+	String diabeticName;
+	boolean power;
+	self_test test;
+	buffer_msgs msg;
+	clock time;
 
-    void displaymessage1() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+	public void switchDeviceOn() {
+		power = true;
+	}
+
+	public void displayMsgs() {
+		ArrayList<String> availableMsgs = msg.getBufferedMsgs();
+		for (String message : availableMsgs) {
+			System.out.println(message);
+		}
+	}
+
+	public void refreshDisplay() {
+		time = new clock();
+		System.out.println(time.getTime());
+		displayMsgs();
+	}
+
+	public clock getTime() {
+		time = new clock();
+		return time;
+	}
+
+	void displaymessage1() {
+		throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
+																		// Tools | Templates.
+	}
+
 }
